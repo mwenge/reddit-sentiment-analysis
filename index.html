@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Orbitron">
+</head>
+<style>
+  body {
+    font-family: 'Orbitron', monospace;
+    font-size: 18px;
+    margin: 0px;
+    background-color: black;
+    color: white;
+    overflow: hidden;
+		height: 500px;
+  }
+  .subreddit { 
+		float: left; 
+		border: 2px solid black;
+    font-size: 30px;
+		color: black;
+	}
+  .title {
+    font-size: 30px;
+    top: 145px;
+    right: 25px;
+    position: absolute;
+		background-color: black;
+		padding: 10px;
+  }
+  .clock { 
+		top: 185px; left: 955px; font-size: 25px; position: absolute;
+		background-color: black;
+		padding: 10px;
+	}
+  .pressplay {
+    font-size: 30px;
+    top: 425px;
+		left: 500px;
+    position: absolute;
+		background-color: black;
+		display: none;
+  }
+  .description {
+    font-size: 30px;
+    bottom: 25px;
+    position: absolute;
+		background-color: black;
+		padding: 10px;
+  }
+</style>
+<div class="label clock" id="clock-layer" width="150" height="200"></div>
+<div class="label title" id="description-layer" width="150" height="200">Reddit Comments</div>
+<div class="description" id="description" width="150" height="200"></div>
+<div class="pressplay" id="pressplay">Paused. Press 'R' to resume.</div>
+<script src="visualization.js"></script>
+<script>
+runVisualization();
+</script>
