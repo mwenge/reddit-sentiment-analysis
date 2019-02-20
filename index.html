@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <head>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Orbitron">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Major+Mono+Display|Monofett|VT323">
 </head>
 <style>
+@font-face {
+    font-family: 'osd';
+    src: url('VCR_OSD_MONO_1.001.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
   body {
-    font-family: 'Orbitron', monospace;
+		font-family: 'osd', monospace;
     font-size: 18px;
     margin: 0px;
     background-color: black;
@@ -27,7 +33,10 @@
 		padding: 10px;
   }
   .clock { 
-		top: 185px; left: 955px; font-size: 25px; position: absolute;
+    font-family: osd;
+		top: 185px; left: 965px; 
+		font-size: 25px; 
+		position: absolute;
 		background-color: black;
 		padding: 10px;
 	}
@@ -38,6 +47,7 @@
     position: absolute;
 		background-color: black;
 		display: none;
+		padding: 10px;
   }
   .description {
     font-size: 30px;
@@ -48,9 +58,9 @@
   }
 </style>
 <div class="label clock" id="clock-layer" width="150" height="200"></div>
-<div class="label title" id="description-layer" width="150" height="200">Reddit Comments</div>
+<div class="label title" id="description-layer" width="150" height="200">REDDIT COMMENTS</div>
 <div class="description" id="description" width="150" height="200"></div>
-<div class="pressplay" id="pressplay">Paused. Press 'R' to resume.</div>
+<div class="pressplay" id="pressplay">PAUSED. PRESS 'R' TO RESUME.</div>
 <script src="visualization.js"></script>
 <script>
 runVisualization();

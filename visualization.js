@@ -27,10 +27,11 @@
 function updateDescription(subreddit) {
 		var description = document.getElementById("description");
 	  description.textContent = subreddit.subreddit
-															+ " positive: " + subreddit.positive 
-															+ " negative: " + subreddit.negative
-															+ " neutral: " + subreddit.neutral;
+															+ " POSITIVE: " + subreddit.positive 
+															+ " NEGATIVE: " + subreddit.negative
+															+ " NEUTRAL: " + subreddit.neutral;
 }
+
 
 var subredditInDescription = "";
 document.body.addEventListener("mouseover", function( event ) {   
@@ -50,9 +51,13 @@ function checkKey(e) {
   if (e.keyCode == '80') {
     // up arrow
 		window.clearInterval(interval);
+		interval = null;
 		var pressplay = document.getElementById("pressplay");
 		pressplay.style.display = "block";
   } else if (e.keyCode == '82') {
+		if (interval) {
+			return;
+		}
 		interval = window.setInterval(drawEvent, 50);
 		var pressplay = document.getElementById("pressplay");
 		pressplay.style.display = "none";
@@ -93,6 +98,7 @@ function getElement(evt) {
 
   element = document.createElement("div");
   element.className = 'subreddit';
+	element.setAttribute('onclick', "window.open('https://reddit.com/r/" + evt.subreddit + "', '_blank')");
   element.id = evt.subreddit;
   document.body.appendChild(element);
   return element;
@@ -102,7 +108,7 @@ function updateSubreddit(evt) {
   var subreddit = subreddits[evt.subreddit];
   if (!subreddit) {
     subreddit = { 
-      subreddit: evt.subreddit,
+      subreddit: evt.subreddit.toUpperCase(),
       totalComments : 0,
 			positive: 0,
 			negative: 0,
