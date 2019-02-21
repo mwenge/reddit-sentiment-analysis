@@ -33,6 +33,7 @@ function updateDescription(subreddit) {
 }
 
 
+
 var subredditInDescription = "";
 document.body.addEventListener("mouseover", function( event ) {   
     // highlight the mouseover target
@@ -44,24 +45,55 @@ document.body.addEventListener("mouseover", function( event ) {
 		updateDescription(subreddit);
 }, false);
 
-var interval = null;
+var intervals = [];
 document.onkeydown = checkKey;
 function checkKey(e) {
   e = e || window.event;
+	// pause
   if (e.keyCode == '80') {
-    // up arrow
-		window.clearInterval(interval);
-		interval = null;
+		intervals.forEach(function (interval) {
+			window.clearInterval(interval);
+		});
+		intervals = [];
 		var pressplay = document.getElementById("pressplay");
 		pressplay.style.display = "block";
-  } else if (e.keyCode == '82') {
-		if (interval) {
+		var fastforward = document.getElementById("fastforward");
+		fastforward.style.display = "none";
+		return;
+  }
+
+	// resume
+ 	if (e.keyCode == '82') {
+		if (intervals.length > 0) {
 			return;
 		}
-		interval = window.setInterval(drawEvent, 50);
+		intervals.push(window.setInterval(drawEvent, 50));
 		var pressplay = document.getElementById("pressplay");
 		pressplay.style.display = "none";
-    // down arrow
+		return;
+  }
+
+	// speed up
+ 	if (e.keyCode == '39') {
+		if (!intervals.length) {
+			return;
+		}
+		intervals.push(window.setInterval(drawEvent, 50));
+		var fastforward = document.getElementById("fastforward");
+		fastforward.style.display = "inline-block";
+		fastforward.textContent = intervals.length + "x";
+		return;
+  }
+
+	// slow down
+ 	if (e.keyCode == '37') {
+		if (intervals.length <= 2) {
+			return;
+		}
+		var fastforward = document.getElementById("fastforward");
+		window.clearInterval(intervals.shift());
+		fastforward.textContent = intervals.length + "x";
+		return;
   }
 }
 
@@ -152,9 +184,9 @@ function drawEvent() {
   document.getElementById('clock-layer').textContent = evt.timestamp;
 
   var updatedHeight = mapSourceToTarget(subreddit.totalComments, screen.height, 1, totalComments / 4.5, 1);
-  var height = Math.max(10, updatedHeight) + 'px';
+  updatedHeight = Math.max(10, updatedHeight);
+  var height = updatedHeight + 'px';
 	if (height == element.style.height) {
-			console.log("skipping");
 			return;
 	}
 
@@ -166,9 +198,11 @@ function drawEvent() {
 	}
 
   var updatedWidth = updatedHeight;
-  var width = Math.max(10, updatedWidth) + 'px';
+  var width = updatedWidth + 'px';
 	element.style.height = height;
 	element.style.width = width;
+	element.style.borderRadius = (updatedWidth / 1.25) + 'px';
+	element.style.padding = (updatedWidth / 4) + 'px';
 
   // Sort it to the top
 	if (element.previousSibling.clientHeight < element.clientHeight) {
@@ -244,7 +278,7 @@ function processEvents() {
 }
 
 function runVisualization() {
-	interval = window.setInterval(drawEvent, 50);
+	intervals.push(window.setInterval(drawEvent, 50));
 
   // Fetch the original image
   fetch('250-sentiments.txt')
