@@ -41,6 +41,26 @@
 		background-color: black;
 		padding: 10px;
 	}
+  .background {
+    font-size: 30px;
+		background-color: black;
+		display: none;
+		padding: 10px;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+	}
+  .menu {
+    width: 200px;
+    height: 200px;
+  }
+  .help {
+    width: 500px;
+    height: 150px;
+  }
   .pressplay {
     font-size: 30px;
 		background-color: black;
@@ -91,7 +111,15 @@
 <div class="description" id="description" width="150" height="200"></div>
 <div class="pressplay" id="pressplay">PAUSED. PRESS 'R' TO RESUME.</div>
 <div class="fastforward" id="fastforward"></div>
+<div class="background menu" id="menu"></div>
+<div class="background help" id="help_menu">
+P - PAUSE <br>
+M - SHOW/HIDE DATA MENU <br>
+RIGHT ARROW - SPEED UP <br>
+LEFT ARROW - SLOW DOWN <br>
+? - SHOW/HIDE HELP<br>
+</div>
 <script src="visualization.js"></script>
 <script>
-runVisualization();
+runVisualization(commentFiles[0]);
 </script>

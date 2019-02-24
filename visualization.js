@@ -32,8 +32,6 @@ function updateDescription(subreddit) {
 															+ " NEUTRAL: " + subreddit.neutral;
 }
 
-
-
 var subredditInDescription = "";
 document.body.addEventListener("mouseover", function( event ) {   
     // highlight the mouseover target
@@ -45,12 +43,15 @@ document.body.addEventListener("mouseover", function( event ) {
 		updateDescription(subreddit);
 }, false);
 
+var totalComments = 0;
 var intervals = [];
 document.onkeydown = checkKey;
 function checkKey(e) {
   e = e || window.event;
 	// pause
   if (e.keyCode == '80') {
+    help_menu.style.display = "none";
+    menu.style.display = "none";
 		intervals.forEach(function (interval) {
 			window.clearInterval(interval);
 		});
@@ -75,6 +76,8 @@ function checkKey(e) {
 
 	// speed up
  	if (e.keyCode == '39') {
+    help_menu.style.display = "none";
+    menu.style.display = "none";
 		if (!intervals.length) {
 			return;
 		}
@@ -87,12 +90,36 @@ function checkKey(e) {
 
 	// slow down
  	if (e.keyCode == '37') {
+    help_menu.style.display = "none";
+    menu.style.display = "none";
 		if (intervals.length <= 2) {
 			return;
 		}
 		var fastforward = document.getElementById("fastforward");
 		window.clearInterval(intervals.shift());
 		fastforward.textContent = intervals.length + "x";
+		return;
+  }
+
+	// select month
+ 	if (e.keyCode == '77') {
+    help_menu.style.display = "none";
+    if (menu.style.display == "block") {
+      menu.style.display = "none";
+    } else {
+      menu.style.display = "block";
+    }
+		return;
+  }
+
+  // show help
+ 	if (e.keyCode == '191') {
+    menu.style.display = "none";
+    if (help_menu.style.display == "block") {
+      help_menu.style.display = "none";
+    } else {
+      help_menu.style.display = "block";
+    }
 		return;
   }
 }
@@ -104,22 +131,6 @@ function mapSourceToTarget(source, max_target, min_target, max_source, min_sourc
   var ratio = parseFloat(source - min_source) / parseFloat(max_source - min_source);
   var target = parseInt(ratio * (max_target - min_target) + min_target);
   return target;
-}
-
-function removeElement(evt) {
-  var element = evt.target;
-  if (element.parentNode) {
-    element.parentNode.removeChild(element);
-  }
-}
-
-function fadeElement(evt) {
-  var element = evt.target;
-  if (element.parentNode) {
-    element.className = 'animation';
-    element.style.animationDuration = animationDuration + 's';
-  }
-  element.addEventListener("animationend", removeElement);
 }
 
 function getElement(evt) {
@@ -165,7 +176,6 @@ function updateSubreddit(evt) {
   return subreddit;
 }
 
-var totalComments = 0;
 function drawEvent() {
   if (events.length < 1) {
     return;
@@ -271,17 +281,39 @@ function processCommentData(name, rs) {
   return rs1;
 }
 
-function processEvents() {
-	for (var i = 0; i < 200; i++) {
-		drawEvent();
-	}
+var commentFiles = [
+  "2011-12",
+  "2016-11",
+];
+var menu = document.getElementById('menu');
+for (var i = 0; i < commentFiles.length; i++) {
+  var element = document.createElement('p');
+	element.setAttribute('onclick', "runVisualization('" + commentFiles[i] + "');");
+  element.textContent = commentFiles[i];
+  menu.appendChild(element);
+
 }
 
-function runVisualization() {
+function runVisualization(yearAndMonth) {
+  intervals.forEach(function (interval) {
+    window.clearInterval(interval);
+  });
+  intervals = [];
+  events = [];
+  subreddits = [];
+  totalComments = 0;
 	intervals.push(window.setInterval(drawEvent, 50));
 
+  menu.style.display = "none";
+  var matches = document.getElementsByClassName("subreddit");
+  while (matches.length > 0) {
+      var element = matches[0];
+      if (element.parentNode) {
+        element.parentNode.removeChild(element);
+      }
+  }
   // Fetch the original image
-  fetch('250-sentiments.txt')
+  fetch('comments/RC_' + yearAndMonth + '.bz2.txt')
   // Retrieve its body as ReadableStream
     .then(response => response.body)
   // Log each fetched Uint8Array chunk
