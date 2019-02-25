@@ -32,6 +32,8 @@ function updateDescription(subreddit) {
     + " NEUTRAL: " + subreddit.neutral;
 }
 
+fastforward.addEventListener("animationend", function() { fastforward.style.display = "none";});
+
 var totalComments = 0;
 var intervals = [];
 var events = [];
@@ -122,6 +124,7 @@ function checkKey(e) {
       return;
     }
     var fastforward = document.getElementById("fastforward");
+    fastforward.style.display = "inline-block";
     window.clearInterval(intervals.shift());
     fastforward.textContent = intervals.length + "x";
     return;
@@ -207,6 +210,13 @@ function drawEvent() {
   }
   totalComments++;
 
+  if (typeof drawEvent.scale == "undefined") {
+    drawEvent.scale = 4;
+  } else if (drawEvent.scale > 2.5) {
+    drawEvent.scale -= 0.001;
+  }
+  console.log(drawEvent.scale);
+
   var evt = events.shift();
   var subreddit = updateSubreddit(evt);
 
@@ -218,7 +228,7 @@ function drawEvent() {
   }
   document.getElementById('clock-layer').textContent = evt.timestamp;
 
-  var updatedHeight = mapSourceToTarget(subreddit.totalComments, screen.height, 1, totalComments / 4.5, 1);
+  var updatedHeight = mapSourceToTarget(subreddit.totalComments, screen.height, 1, totalComments / drawEvent.scale, 1);
   updatedHeight = Math.max(10, updatedHeight);
   var height = updatedHeight + 'px';
   if (height == element.style.height) {
@@ -318,6 +328,7 @@ function runVisualization(yearAndMonth) {
 
   menu.style.display = "none";
   fastforward.style.display = "none";
+  pressplay.style.display = "none";
   var matches = document.getElementsByClassName("subreddit");
   while (matches.length > 0) {
     var element = matches[0];
