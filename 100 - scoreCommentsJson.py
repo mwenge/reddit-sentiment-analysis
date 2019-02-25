@@ -34,7 +34,7 @@ def processFile(archive, filename):
     score_file = open(archive[0] + os.sep + filename + ".txt", 'w')
 
     commentCount = 0
-    while True:
+    for line_count in range(1, 200000):
         line = bz_file.readline().decode('utf8')
         if len(line) == 0:
             break
