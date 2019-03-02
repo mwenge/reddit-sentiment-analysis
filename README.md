@@ -6,7 +6,7 @@ This document is best read [on its Github page.](https://github.com/mwenge/reddi
 
 Here is an example of the visualization being used and viewed:
 
-[![Watch the video](images/movie-preview.png)](https://drive.google.com/file/d/17Hfsc0OOp4FrhTXkbDizdHIwyhnMnY9e/view)
+[![Watch the video](images/movie-preview.png)](https://youtu.be/6AwOG-d9z8I)
 
 ## Overview of the Dataset Chosen for the Visualization
 The dataset I chose is a nearly complete download of all comments made on the website reddit.com from 2007 through to 2017. The dataset is made available through a torrent download at https://www.reddit.com/r/datasets/comments/65o7py/updated_reddit_comment_dataset_as_torrents/. The total dataset size is huge (up to 300GB) so instead of working on the entire dataset I've chosen to pick one month from each year in the range 2007 to 2017.
