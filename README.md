@@ -1,5 +1,7 @@
 # 13091341 - B8IT107 - Data Visualization
 
+This document is best read [on its Github page.](https://github.com/mwenge/reddit-sentiment-analysis)
+
 [The finished visualization is available here.](https://mwenge.github.io/reddit-sentiment-analysis)
 
 Here is an example of the visualization being used and viewed:
