@@ -86,7 +86,13 @@ The visualisation tells us a few things, none of them very surprising!
  With the comments in the same period in 2016:
  ![2016](images/2016-vol.png)
  
- - The sentiment analysis on the comments, illustrated by the shade of the comment bubbles, tells us that subreddits with any kind of comment volume tend towards a balance of positive/negative comments, with positive comments slightly outweighing the negative. How boring! Subreddits ten to be most positive when there are fewer comments. Looking at the image below from 2016 we can see that a lot of the small subreddits are bright green (indicating positive). There are only a few that are outright negative (red).  Of the subreddits attracting a lot of comments, THE_DONALD and POKEMON are notably more positive (brighter) than the rest. So the reader can draw his/her own conclusions abou the sort of people who comment on reddit!
+ - The sentiment analysis on the comments, illustrated by the shade of the comment bubbles, tells us that subreddits with any kind of comment volume tend towards a balance of positive/negative comments, with positive comments slightly outweighing the negative. How boring! Subreddits ten to be most positive when there ar fewer comments. Looking at the image below from 2016 we can see that a lot of the small subreddits are bright green (indicating positive). There are only a few that are outright negative (red).  Of the subreddits attracting a lot of comments, THE_DONALD and POKEMON are notably more positive (brighter) than the rest. So the reader can draw his/her own conclusions abou the sort of people who comment on reddit!
 
-![2016](images/2016-sentiment.png)
+ ![2016](images/2016-sentiment.png)
  
+## Conclusions
+The time-series bubble technique I've chosen here isn't an overwhelming success but it does provide some insights. Allowing the user to interact with the visualisation by speeding it up, choosing years to view, and hover/click on subreddits that interest them is definitely one of the successes of this project. However we need to find other ways of presenting the comment data, maybe over a tield plain or presenting it as an interactive ribbon chart. 
+
+One of the main challenges in building this project was choosing an exciting/interactive display mode that suits the data. I don't think I've overcome this challenge yet. On the whole though I'm happy with the framework I've created for presenting the data and will probably continue to build on it to create new options for presentation. I think it will be useful for other datasets that are time-series based and can offer the user interested in exploring trends and drilling down into details an engaging experience.
+
+
