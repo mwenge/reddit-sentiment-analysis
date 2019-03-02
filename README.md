@@ -25,7 +25,7 @@ Fortunately at https://github.com/dewarim/reddit-data-tools there is [a python s
     * the sentiment score of the comment as compute by the ntlk python module. This score ranges from -1 for very negative to + 1 for very positive.
 
 Once we've run the script we now have an [input file for each month](https://github.com/mwenge/reddit-sentiment-analysis/tree/master/comments) that we've chosen for our visualization. Here's an example of what each file looks like:
-
+```
 -0.0891	politics	2007-12-01 00:00:00
 0.0	politics	2007-12-01 00:00:07
 0.6604	reddit.com	2007-12-01 00:00:07
@@ -36,7 +36,7 @@ Once we've run the script we now have an [input file for each month](https://git
 -0.0851	gaming	2007-12-01 00:00:39
 0.3591	reddit.com	2007-12-01 00:00:41
 0.3548	entertainment	2007-12-01 00:00:41
-
+```
 
 ## Objectives of the Visualisation
 The objective here is to create a visualization of comments on the reddit website. The visualization will help the viewer understand the rate at which comments are made on Reddit, the sub-reddits attracting the most comments at any given time, and how negative or positive each subreddit is in terms of the comments it attracts. In addition the visualization will be interactive, allowing the user to:
@@ -54,7 +54,21 @@ The visualization uses HTML, CSS, and Javascript. It doesn't use any Javascript 
 
 The way it works is pretty simple. When you load the page in your browser, it first reads in the comment file from 2011 that we created above and stores them in memory. It then start a timer that updates the display with the content of each comment in the dataset, one comment at a time, every 10 milliseconds. This creates the appearance of a 'real-time' view of comments happening in reddit. We use a clock, fed with the timestamps from the comments, to enhance the experience of observing a second-by-second view of comment activity on reddit.
 
-You can press '?' at any time to see the available user commands. These include 'P' to pause, 'R' to resume, 'M' to select a different year's data, Ctrl+'+' to zoom in on the visualization, Ctrl + '-' to zoom out, right-arrow to speed up, and left-arrow to slow down.
+![2016 in action](2016.png)
+
+You can press '?' at any time to see the available user commands. 
+
+![Help menu](help.png)
+
+These include 'P' to pause and 'R' to resume: 
+
+![Resume menu](resume.png)
+
+'M' to select a different year's data: 
+
+![Selecting data](datamenu.png)
+
+You can use Ctrl+'+' to zoom in on the visualization, Ctrl + '-' to zoom out, right-arrow to speed up, and left-arrow to slow down.
 
 You can hover the mouse over any bubble to see how many positive/negative/neutral comments it contains. You can click on a bubble to open up that subreddit in reddit as it is today.
 
