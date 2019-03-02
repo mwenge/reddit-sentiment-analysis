@@ -68,8 +68,13 @@ These include 'P' to pause and 'R' to resume:
 
 ![Selecting data](datamenu.png)
 
-You can use Ctrl+'+' to zoom in on the visualization, Ctrl + '-' to zoom out, right-arrow to speed up, and left-arrow to slow down.
+You can use Ctrl+'+' to zoom in on the visualization, Ctrl + '-' to zoom out.
+
+Use the right-arrow to speed up, and left-arrow to slow down:
+
+![Fast forward](ff.png)
 
 You can hover the mouse over any bubble to see how many positive/negative/neutral comments it contains. You can click on a bubble to open up that subreddit in reddit as it is today.
 
+## What the Visualisation Tells Us
 
