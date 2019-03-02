@@ -4,7 +4,7 @@
 
 Here is an example of the visualization being used and viewed:
 
-[![Watch the video](movie-preview.png)](https://drive.google.com/file/d/17Hfsc0OOp4FrhTXkbDizdHIwyhnMnY9e/view)
+[![Watch the video](images/movie-preview.png)](https://drive.google.com/file/d/17Hfsc0OOp4FrhTXkbDizdHIwyhnMnY9e/view)
 
 ## Overview of the Dataset Chosen for the Visualization
 The dataset I chose is a nearly complete download of all comments made on the website reddit.com from 2007 through to 2017. The dataset is made available through a torrent download at https://www.reddit.com/r/datasets/comments/65o7py/updated_reddit_comment_dataset_as_torrents/. The total dataset size is huge (up to 300GB) so instead of working on the entire dataset I've chosen to pick one month from each year in the range 2007 to 2017.
@@ -54,37 +54,37 @@ The visualization uses HTML, CSS, and Javascript. It doesn't use any Javascript 
 
 The way it works is pretty simple. When you load the page in your browser, it first reads in the comment file from 2011 that we created above and stores them in memory. It then start a timer that updates the display with the content of each comment in the dataset, one comment at a time, every 10 milliseconds. This creates the appearance of a 'real-time' view of comments happening in reddit. We use a clock, fed with the timestamps from the comments, to enhance the experience of observing a second-by-second view of comment activity on reddit.
 
-![2016 in action](2016.png)
+![2016 in action](images/2016.png)
 
 You can press '?' at any time to see the available user commands. 
 
-![Help menu](help.png)
+![Help menu](images/help.png)
 
 These include 'P' to pause and 'R' to resume: 
 
-![Resume menu](resume.png)
+![Resume menu](images/resume.png)
 
 'M' to select a different year's data: 
 
-![Selecting data](datamenu.png)
+![Selecting data](images/datamenu.png)
 
 You can use Ctrl+'+' to zoom in on the visualization, Ctrl + '-' to zoom out.
 t 
 Use the right-arrow to speed up, and left-arrow to slow down:
 
-![Fast forward](ff.png)
+![Fast forward](images/ff.png)
 
 You can hover the mouse over any bubble to see how many positive/negative/neutral comments it contains. You can click on a bubble to open up that subreddit in reddit as it is today.
 
 ## What the Visualisation Tells Us
 The visualisation tells us a few things, none of them very surprising!
  - Reddit grew enormously in popularity in the period 2007 to 2017. The rate at which comments are created on the site is grows noticeably each year, even when considering the narrow timeslice our visualization uses here. Compare the comments in 2007:
- ![2007](2007.png)
+ ![2007](images/2007.png)
  
  With the comments in the same period in 2016:
- ![2016](2016-vol.png)
+ ![2016](images/2016-vol.png)
  
  - The sentiment analysis on the comments, illustrated by the shade of the comment bubbles, tells us that subreddits with any kind of comment volume tend towards a balance of positive/negative comments, with positive comments slightly outweighing the negative. How boring! Subreddits ten to be most positive when there are fewer comments. Looking at the image below from 2016 we can see that a lot of the small subreddits are bright green (indicating positive). There are only a few that are outright negative (red).  Of the subreddits attracting a lot of comments, THE_DONALD and POKEMON are notably more positive (brighter) than the rest. So the reader can draw his/her own conclusions abou the sort of people who comment on reddit!
 
-![2016](2016-sentiment.png)
+![2016](images/2016-sentiment.png)
  
