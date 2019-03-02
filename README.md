@@ -81,13 +81,11 @@ You can hover the mouse over any bubble to see how many positive/negative/neutra
 ## What the Visualisation Tells Us
 The visualisation tells us a few things, none of them very surprising!
  - Reddit grew enormously in popularity in the period 2007 to 2017. The rate at which comments are created on the site is grows noticeably each year, even when considering the narrow timeslice our visualization uses here. Compare the comments in 2007:
- ![2007](images/2007.png)
- 
+ ![2007](images/2007.png) 
  With the comments in the same period in 2016:
  ![2016](images/2016-vol.png)
  
  - The sentiment analysis on the comments, illustrated by the shade of the comment bubbles, tells us that subreddits with any kind of comment volume tend towards a balance of positive/negative comments, with positive comments slightly outweighing the negative. How boring! Subreddits ten to be most positive when there ar fewer comments. Looking at the image below from 2016 we can see that a lot of the small subreddits are bright green (indicating positive). There are only a few that are outright negative (red).  Of the subreddits attracting a lot of comments, THE_DONALD and POKEMON are notably more positive (brighter) than the rest. So the reader can draw his/her own conclusions abou the sort of people who comment on reddit!
-
  ![2016](images/2016-sentiment.png)
  
 ## Conclusions
