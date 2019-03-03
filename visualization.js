@@ -24,6 +24,10 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
+var pckry = new Packery( '.grid', {
+    itemSelector: '.subreddit',
+});
+
 function updateDescription(subreddit) {
   var description = document.getElementById("description");
   description.textContent = subreddit.subreddit
@@ -37,7 +41,7 @@ fastforward.addEventListener("animationend", function() { fastforward.style.disp
 var totalComments = 0;
 var intervals = [];
 var events = [];
-var subreddits = [];
+var subreddits = {};
 
 var currentCommentFileIndex = 0;
 var commentFiles = [
@@ -169,7 +173,12 @@ function getElement(evt) {
   element.className = 'subreddit';
   element.setAttribute('onclick', "window.open('https://reddit.com/r/" + evt.subreddit + "', '_blank')");
   element.id = evt.subreddit;
-  document.body.appendChild(element);
+  document.getElementsByClassName("grid")[0].appendChild(element);
+  pckry.appended(element);
+  var noOfElements = pckry.getItemElements().length;
+  if (noOfElements < 400 || noOfElements % 20 == 0) {
+    pckry.layout();
+  }
   return element;
 }
 
@@ -215,7 +224,6 @@ function drawEvent() {
   } else if (drawEvent.scale > 2.5) {
     drawEvent.scale -= 0.001;
   }
-  console.log(drawEvent.scale);
 
   var evt = events.shift();
   var subreddit = updateSubreddit(evt);
@@ -249,11 +257,9 @@ function drawEvent() {
   element.style.borderRadius = (updatedWidth / 1.25) + 'px';
   element.style.padding = (updatedWidth / 4) + 'px';
 
-  // Sort it to the top
-  if (element.previousSibling.clientHeight < element.clientHeight) {
-    element.parentNode.insertBefore(element, element.previousSibling);
+  if (totalComments % 250 == 0) {
+    pckry.layout();
   }
-
 }
 
 class ProcessComment {
