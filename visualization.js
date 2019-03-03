@@ -24,9 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
-var pckry = new Packery( '.grid', {
-    itemSelector: '.subreddit',
-});
+var pckry = null;
 
 function updateDescription(subreddit) {
   var description = document.getElementById("description");
@@ -243,7 +241,7 @@ function drawEvent() {
     return;
   }
 
-  if (updatedHeight > 30) {
+  if (updatedHeight > 20) {
     element.textContent = subreddit.subreddit;
     element.style.fontSize = (updatedHeight / 9) + 'px';
   } else {
@@ -323,6 +321,12 @@ function processCommentData(name, rs) {
 }
 
 function runVisualization(yearAndMonth) {
+  if (pckry != null) {
+    pckry.destroy();
+  }
+  pckry = new Packery( '.grid', {
+      itemSelector: '.subreddit',
+  });
   intervals.forEach(function (interval) {
     window.clearInterval(interval);
   });
