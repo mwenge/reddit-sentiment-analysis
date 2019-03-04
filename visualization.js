@@ -321,12 +321,6 @@ function processCommentData(name, rs) {
 }
 
 function runVisualization(yearAndMonth) {
-  if (pckry != null) {
-    pckry.destroy();
-  }
-  pckry = new Packery( '.grid', {
-      itemSelector: '.subreddit',
-  });
   intervals.forEach(function (interval) {
     window.clearInterval(interval);
   });
@@ -346,6 +340,13 @@ function runVisualization(yearAndMonth) {
       element.parentNode.removeChild(element);
     }
   }
+  if (pckry != null) {
+    pckry.destroy();
+  }
+  pckry = new Packery( '.grid', {
+      itemSelector: '.subreddit',
+  });
+
   // Fetch the original image
   fetch('comments/RC_' + yearAndMonth + '.bz2.txt')
   // Retrieve its body as ReadableStream
